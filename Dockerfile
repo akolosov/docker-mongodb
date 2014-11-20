@@ -30,7 +30,7 @@ ENV MONGOD_CFG_CONFIG_FILE /usr/local/etc/mongod-cfg.cfg
 ENV MONGOS_CONFIG_FILE /usr/local/etc/mongos.cfg
 
 ADD mongodb-startup.sh /usr/local/sbin/mongodb-startup.sh
-ADD mongodb.cfg /usr/local/etc/mongodb.cfg
+ADD mongod.cfg /usr/local/etc/mongod.cfg
 ADD mongod-cfg.cfg /usr/local/etc/mongod-cfg.cfg
 ADD mongos.cfg /usr/local/etc/mongos.cfg
 RUN chmod 755 /usr/local/sbin/mongodb-startup.sh

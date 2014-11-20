@@ -1,0 +1,16 @@
+systemLog:
+  destination: file
+  path: "/data/logs/mongo.log"
+  logAppend: true
+  verbosity: 3
+  timeStampFormat: ctime
+storage:
+  directoryPerDB: true
+  smallFiles: true
+  journal:
+    enabled: true
+processManagement:
+  fork: true
+net:
+  http:
+    enabled: true

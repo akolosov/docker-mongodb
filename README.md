@@ -14,5 +14,5 @@ convenience sake, the node is named master.
 Run 
 ---
 
-`docker run -d -h mongo -name mongodb -p 27017:27017 -p 27018:27018 -p 27019:27019 \
-			akolosov/mongod <mongodb options>`
+`docker run -d -h mongodb --name mongodb -p 27017:27017 -p 27018:27018 -p 27019:27019 \
+			akolosov/mongodb <mongodb options>`

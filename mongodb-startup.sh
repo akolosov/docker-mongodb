@@ -5,7 +5,7 @@ if [ -n $MONGODB_SINGLE_SERVER ]; then
 fi
 
 if [ -n $MONGODB_REPLICA_SET ]; then
-  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --replSet $REPLICA_SET --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --notablescan --noprealloc --smallfiles $REPLICA_SET_OPTIONS	 	
+  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --replSet $MONGODB_RREPLICA_SET --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --notablescan --noprealloc --smallfiles $REPLICA_SET_OPTIONS	 	
 fi
 
 if [ -n $MONGODB_CONFIG_SET ]; then

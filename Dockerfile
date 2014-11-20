@@ -25,10 +25,14 @@ ENV MONGODB_LOGS_PATH /data/logs
 ENV MONGODB_MAIN_PORT 27017
 ENV MONGODB_ROUTER_PORT 27018
 ENV MONGODB_CONFIG_PORT 27019
-ENV MONGODB_CONFIG_FILE /usr/local/etc/mongo.cfg
+ENV MONGOD_CONFIG_FILE /usr/local/etc/mongod.cfg
+ENV MONGOD_CFG_CONFIG_FILE /usr/local/etc/mongod-cfg.cfg
+ENV MONGOS_CONFIG_FILE /usr/local/etc/mongos.cfg
 
 ADD mongodb-startup.sh /usr/local/sbin/mongodb-startup.sh
-ADD mongo.cfg /usr/local/etc/mongo.cfg
+ADD mongodb.cfg /usr/local/etc/mongodb.cfg
+ADD mongod-cfg.cfg /usr/local/etc/mongod-cfg.cfg
+ADD mongos.cfg /usr/local/etc/mongos.cfg
 RUN chmod 755 /usr/local/sbin/mongodb-startup.sh
 
 CMD /usr/local/sbin/mongodb-startup.sh

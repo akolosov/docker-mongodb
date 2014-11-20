@@ -6,7 +6,9 @@ RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
 
 # Install MongoDB
 RUN apt-get update
-RUN apt-get install mongodb-10gen
+RUN apt-get upgrade -yqq
+RUN apt-get -yqq install mongodb-org
+RUN apt-get -yqq clean
 RUN rm -rf /var/lib/apt/lists/*
 
 # Define mount points.

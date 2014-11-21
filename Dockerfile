@@ -31,7 +31,6 @@ ENV MONGOD_CONFIG_FILE /usr/local/etc/mongod.cfg
 ENV MONGOD_CFG_CONFIG_FILE /usr/local/etc/mongod-cfg.cfg
 ENV MONGOS_CONFIG_FILE /usr/local/etc/mongos.cfg
 
-ADD initiate.js /usr/local/etc/initiate.js
 ADD mongodb-startup.sh /usr/local/sbin/mongodb-startup.sh
 ADD mongod.cfg /usr/local/etc/mongod.cfg
 ADD mongod-cfg.cfg /usr/local/etc/mongod-cfg.cfg

@@ -8,9 +8,6 @@ fi
 if [ -n "$MONGODB_REPLICA_SET" ]; then
 	echo "Starting up MongoDB replica set $MONGODB_REPLICA_SET"
 	/usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --notablescan --noprealloc --smallfiles --replSet $MONGODB_REPLICA_SET $OPTIONS
-	sleep 3
-	echo "Setting up MongoDB replica set $MONGODB_REPLICA_SET"
-	cat /usr/local/etc/initiate.js|/usr/bin/mongo --host $HOSTNAME --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_CONFIG_SET" ]; then
@@ -22,3 +19,14 @@ if [ -n "$MONGODB_ROUTER_SET" ]; then
 	echo "Starting up MongoDB router $MONGODB_REPLICA_SET"
 	/usr/bin/mongos --config $MONGOS_CONFIG_FILE --configdb $MONGODB_CONFIG_SERVERS --port $MONGODB_ROUTER_PORT $OPTIONS
 fi
+
+if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
+	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
+	echo "rs.initiate();"|/usr/bin/mongo --host $HOSTNAME --port $MONGODB_MAIN_PORT
+fi
+
+if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
+	echo "Adding to MongoDB replica set $MONGODB_REPLICA_SET host $MONGODB_REPLICA_SET_ADD_HOST"
+	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host $HOSTNAME --port $MONGODB_MAIN_PORT
+fi
+

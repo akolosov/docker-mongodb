@@ -7,7 +7,9 @@ fi
 
 if [ -n $MONGODB_REPLICA_SET ]; then
 	echo "Starting up MongoDB replica set $MONGODB_REPLICA_SET"
-	/usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --notablescan --noprealloc --smallfiles --replSet $MONGODB_REPLICA_SET $OPTIONS	 	
+	/usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --notablescan --noprealloc --smallfiles --replSet $MONGODB_REPLICA_SET $OPTIONS
+	sleep 3
+	/usr/bin/mongo --host 127.0.0.1 --port $MONGODB_MAIN_PORT < /usr/local/etc/initiate.js
 fi
 
 if [ -n $MONGODB_CONFIG_SET ]; then

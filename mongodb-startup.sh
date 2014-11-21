@@ -22,11 +22,11 @@ fi
 
 if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
-	echo "rs.initiate();"|/usr/bin/mongo --host localhost --port $MONGODB_MAIN_PORT
+	echo "rs.initiate();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
 	echo "Adding to MongoDB replica set $MONGODB_REPLICA_SET host $MONGODB_REPLICA_SET_ADD_HOST"
-	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host localhost --port $MONGODB_MAIN_PORT
+	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 

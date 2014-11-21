@@ -23,6 +23,10 @@ fi
 if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
 	echo "rs.initiate();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+
+	if [ -n "$MONGODB_SERVICE_IP" ]; then
+		echo "cfg = rs.conf(); cfg.members[0].host = '$MONGODB_SERVICE_IP:27017'; rs.reconfig(cfg);	rs.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+	fi
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then

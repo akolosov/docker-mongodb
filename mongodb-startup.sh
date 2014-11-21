@@ -32,7 +32,7 @@ fi
 
 if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
-	echo "rs.initiate();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+	echo "rs.initiate($MONGODB_REPLICA_SET_INITIATE_STRING);"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then

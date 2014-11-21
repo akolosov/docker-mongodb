@@ -23,18 +23,18 @@ fi
 if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
 	echo "rs.initiate();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
-
-	if [ -n "$MONGODB_SERVICE_IP" ]; then
-		echo "Changing up MongoDB replica set host to $MONGODB_SERVICE_IP:$MONGODB_MAIN_PORT"
-		echo "cfg = rs.conf();
-					cfg.members[0].host = '$MONGODB_SERVICE_IP:$MONGODB_MAIN_PORT';
-					rs.reconfig(cfg, { force: true });
-					rs.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
-	fi
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
 	echo "Adding to MongoDB replica set $MONGODB_REPLICA_SET host $MONGODB_REPLICA_SET_ADD_HOST"
 	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+fi
+
+if [ -n "$MONGODB_SET_SERVICE_IP" ]; then
+	echo "Changing up MongoDB replica set host to $MONGODB_SET_SERVICE_IP:$MONGODB_MAIN_PORT"
+	echo "cfg = rs.conf();
+				cfg.members[0].host = '$MONGODB_SET_SERVICE_IP:$MONGODB_MAIN_PORT';
+				rs.reconfig(cfg, { force: true });
+				rs.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 

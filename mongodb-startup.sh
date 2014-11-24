@@ -52,14 +52,14 @@ if [ -n "$MONGODB_REPLICA_SET_ADD_TO_SHARD" ]; then
 	sleep 2
 	echo "Adding MongoDB replica set $MONGODB_REPLICA_SET_ADD_TO_SHARD to sharding cluster"
 	echo "sh.addShard('$MONGODB_REPLICA_SET_ADD_TO_SHARD');
-				sh.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_ROUTER_PORT
+				sh.status();"|/usr/bin/mongo --host mongo-router --port $MONGODB_ROUTER_PORT
 fi
 
 if [ -n "$MONGODB_ENABLE_DATABASE_SHARDING" ]; then
 	sleep 2
 	echo "Enabling MongoDB database $MONGODB_ENABLE_DATABASE_SHARDING sharding in cluster"
 	echo "sh.enableSharding('$MONGODB_ENABLE_DATABASE_SHARDING');
-				sh.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_ROUTER_PORT
+				sh.status();"|/usr/bin/mongo --host mongo-router --port $MONGODB_ROUTER_PORT
 fi
 
 if [ -n "$MONGODB_SET_SERVICE_IP" ]; then

@@ -32,26 +32,26 @@ fi
 
 if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	sleep 2
-	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
+	echo "Initiating up MongoDB replica set"
 	echo "rs.initiate($MONGODB_REPLICA_SET_INITIATE_STRING);"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_READPREF" ]; then
 	sleep 2
-	echo "Setting up MongoDB replica set $MONGODB_REPLICA_SET readPref()"
+	echo "Setting up MongoDB replica set readPref()"
 	echo "db.getMongo().setReadPref('$MONGODB_REPLICA_SET_READPREF');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
 	sleep 2
-	echo "Adding to MongoDB replica set $MONGODB_REPLICA_SET host $MONGODB_REPLICA_SET_ADD_HOST"
+	echo "Adding to MongoDB replica set host $MONGODB_REPLICA_SET_ADD_HOST"
 	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_TO_SHARD" ]; then
 	sleep 2
-	echo "Adding MongoDB replica set $MONGODB_REPLICA_SET to sharding cluster"
-	echo "sh.addShard('$MONGODB_REPLICA_SET/$MONGODB_REPLICA_SET_ADD_TO_SHARD');
+	echo "Adding MongoDB replica set $MONGODB_REPLICA_SET_ADD_TO_SHARD to sharding cluster"
+	echo "sh.addShard('$MONGODB_REPLICA_SET_ADD_TO_SHARD');
 				sh.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_ROUTER_PORT
 fi
 

@@ -34,6 +34,8 @@ if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	sleep 2
 	echo "Initiating up MongoDB replica set"
 	echo "rs.initiate($MONGODB_REPLICA_SET_INITIATE_STRING);"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+	sleep 2
+	echo "rs.slaveOk(true);"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_READPREF" ]; then

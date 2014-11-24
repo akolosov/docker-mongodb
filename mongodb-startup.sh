@@ -35,6 +35,11 @@ if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
 	echo "rs.initiate($MONGODB_REPLICA_SET_INITIATE_STRING);"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
+if [ -n "$MONGODB_REPLICA_SET_READPREF" ]; then
+	echo "Setting up MongoDB replica set $MONGODB_REPLICA_SET readPref()"
+	echo "db.getMongo().setReadPref('$MONGODB_REPLICA_SET_READPREF');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+fi
+
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
 	echo "Adding to MongoDB replica set $MONGODB_REPLICA_SET host $MONGODB_REPLICA_SET_ADD_HOST"
 	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT

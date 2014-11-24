@@ -21,12 +21,12 @@ if [ -n "$MONGODB_REPLICA_SET" ]; then
 fi
 
 if [ -n "$MONGODB_CONFIG_SET" ]; then
-	echo "Starting up MongoDB config server $MONGODB_REPLICA_SET"
+	echo "Starting up MongoDB config server $MONGODB_CONFIG_SET"
 	/usr/bin/mongod --config $MONGOD_CFG_CONFIG_FILE --configsvr --dbpath $MONGODB_METADATA_PATH --port $MONGODB_CONFIG_PORT $OPTIONS	
 fi
 
 if [ -n "$MONGODB_ROUTER_SET" ]; then
-	echo "Starting up MongoDB router $MONGODB_REPLICA_SET"
+	echo "Starting up MongoDB router $MONGODB_ROUTER_SET"
 	/usr/bin/mongos --config $MONGOS_CONFIG_FILE --configdb $MONGODB_CONFIG_SERVERS --port $MONGODB_ROUTER_PORT $OPTIONS
 fi
 

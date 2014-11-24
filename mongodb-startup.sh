@@ -31,21 +31,39 @@ if [ -n "$MONGODB_ROUTER_SET" ]; then
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_INITIATE" ]; then
+	sleep 2
 	echo "Initiating up MongoDB replica set $MONGODB_REPLICA_SET"
 	echo "rs.initiate($MONGODB_REPLICA_SET_INITIATE_STRING);"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_READPREF" ]; then
+	sleep 2
 	echo "Setting up MongoDB replica set $MONGODB_REPLICA_SET readPref()"
 	echo "db.getMongo().setReadPref('$MONGODB_REPLICA_SET_READPREF');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
 if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
+	sleep 2
 	echo "Adding to MongoDB replica set $MONGODB_REPLICA_SET host $MONGODB_REPLICA_SET_ADD_HOST"
 	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
+if [ -n "$MONGODB_REPLICA_SET_ADD_TO_SHARD" ]; then
+	sleep 2
+	echo "Adding MongoDB replica set $MONGODB_REPLICA_SET to sharding cluster"
+	echo "sh.addShard('$MONGODB_REPLICA_SET/$MONGODB_REPLICA_SET_ADD_TO_SHARD');
+				sh.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_ROUTER_PORT
+fi
+
+if [ -n "$MONGODB_ENABLE_DATABASE_SHARDING" ]; then
+	sleep 2
+	echo "Enabling MongoDB database $MONGODB_ENABLE_DATABASE_SHARDING sharding in cluster"
+	echo "sh.enableSharding('$MONGODB_ENABLE_DATABASE_SHARDING');
+				sh.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_ROUTER_PORT
+fi
+
 if [ -n "$MONGODB_SET_SERVICE_IP" ]; then
+	sleep 2
 	echo "Changing up MongoDB replica set host to $MONGODB_SET_SERVICE_IP:$MONGODB_MAIN_PORT"
 	echo "cfg = rs.conf();
 				cfg.members[0].host = '$MONGODB_SET_SERVICE_IP:$MONGODB_MAIN_PORT';

@@ -48,6 +48,12 @@ if [ -n "$MONGODB_REPLICA_SET_ADD_HOST" ]; then
 	echo "rs.add('$MONGODB_REPLICA_SET_ADD_HOST');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
+if [ -n "$MONGODB_REPLICA_SET_ADD_ARBITER" ]; then
+	sleep 2
+	echo "Adding to MongoDB replica set arbiter $MONGODB_REPLICA_SET_ADD_ARBITER"
+	echo "rs.addArb('$MONGODB_REPLICA_SET_ADD_ARBITER');"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
+fi
+
 if [ -n "$MONGODB_REPLICA_SET_ADD_TO_SHARD" ]; then
 	sleep 2
 	echo "Adding MongoDB replica set $MONGODB_REPLICA_SET_ADD_TO_SHARD to sharding cluster"

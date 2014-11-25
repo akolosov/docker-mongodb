@@ -39,4 +39,4 @@ RUN chmod 755 /usr/local/sbin/mongodb-startup.sh
 
 CMD /usr/local/sbin/mongodb-startup.sh
 
-EXPOSE 27017 27018 27019
+EXPOSE 27017 27018 27019 28017

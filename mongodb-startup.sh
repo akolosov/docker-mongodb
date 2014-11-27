@@ -72,8 +72,8 @@ fi
 if [ -n "$MONGODB_ENABLE_COLLECTION_SHARDING" ]; then
   sleep 2
   echo "Enabling MongoDB collection $MONGODB_ENABLE_COLLECTION_SHARDING sharding in cluster"
-  DATABASE = `echo $MONGODB_ENABLE_COLLECTION_SHARDING|sed 's/\.[^\.]*$//'` 
-  COLLECTION = `echo $MONGODB_ENABLE_COLLECTION_SHARDING|sed 's/^.*\.//'` 
+  export DATABASE = `echo $MONGODB_ENABLE_COLLECTION_SHARDING|sed 's/\.[^\.]*$//'` 
+  export COLLECTION = `echo $MONGODB_ENABLE_COLLECTION_SHARDING|sed 's/^.*\.//'` 
   echo "use $DATABASE
         db.$COLLECTION.ensureIndex({ _id : "hashed" })
         sh.shardCollection('$MONGODB_ENABLE_COLLECTION_SHARDING', { "_id": "hashed" });

@@ -89,3 +89,8 @@ if [ -n "$MONGODB_SET_SERVICE_IP" ]; then
         rs.status();"|/usr/bin/mongo --host mongo-server --port $MONGODB_MAIN_PORT
 fi
 
+if [ -n "$MONGODB_LOG_ROTATE" ]; then
+  echo "Rotating up MongoDB logfiles"
+	killall -SIGUSR1 mongod
+	killall -SIGUSR1 mongos
+fi

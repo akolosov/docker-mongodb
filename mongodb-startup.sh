@@ -2,22 +2,22 @@
 
 if [ -n "$MONGODB_SINGLE_SERVER" ]; then
   echo "Starting up single MongoDB server"
-  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --httpinterface --notablescan --noprealloc --smallfiles $OPTIONS     
+  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --rest --httpinterface --notablescan --noprealloc --smallfiles $OPTIONS     
 fi
 
 if [ -n "$MONGODB_IS_MASTER" ]; then
   echo "Starting up MongoDB Master"
-  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --httpinterface --notablescan --noprealloc --smallfiles --master $OPTIONS
+  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --rest --httpinterface --notablescan --noprealloc --smallfiles --master $OPTIONS
 fi
 
 if [ -n "$MONGODB_IS_SLAVE_FOR" ]; then
   echo "Starting up MongoDB Slave for $MONGODB_IS_SLAVE_FOR"
-  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --httpinterface --notablescan --noprealloc --smallfiles --slave --source $MONGODB_IS_SLAVE_FOR:$MONGODB_MAIN_PORT $OPTIONS
+  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --rest --httpinterface --notablescan --noprealloc --smallfiles --slave --source $MONGODB_IS_SLAVE_FOR:$MONGODB_MAIN_PORT $OPTIONS
 fi
 
 if [ -n "$MONGODB_REPLICA_SET" ]; then
   echo "Starting up MongoDB replica set $MONGODB_REPLICA_SET"
-  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --httpinterface --notablescan --noprealloc --smallfiles --replSet $MONGODB_REPLICA_SET $OPTIONS
+  /usr/bin/mongod --config $MONGOD_CONFIG_FILE --dbpath $MONGODB_DATA_PATH --port $MONGODB_MAIN_PORT --rest --httpinterface --notablescan --noprealloc --smallfiles --replSet $MONGODB_REPLICA_SET $OPTIONS
 fi
 
 if [ -n "$MONGODB_CONFIG_SET" ]; then

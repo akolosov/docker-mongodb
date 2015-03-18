@@ -1,7 +1,7 @@
 Introduction
 ============
 
-Docker container for MongoDB 2.x.x with ability to form cluster
+Docker container for MongoDB 3.x.x with ability to form cluster
 
 
 Usage
